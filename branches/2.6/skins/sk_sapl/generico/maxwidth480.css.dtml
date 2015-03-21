@@ -1,6 +1,6 @@
 #menu,
 #busca {
-display: none;
+display: none !important;
 }
 
 #logo {
@@ -29,8 +29,7 @@ font-size: 80% !important;
 }
 
 #funcoes {
-padding-top: 1px !important;
-padding-bottom: 0;
+padding-top: 0 !important;
 }
 
 #select-nav {
@@ -66,7 +65,7 @@ text-align: center;
 text-align: center;
 }
 
-.tileItem {
+.tileItemBancada {
 width: 95%;
 }
 
