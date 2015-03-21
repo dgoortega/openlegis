@@ -1,4 +1,3 @@
-from warnings import warn
 from datetime import datetime
 from AccessControl import ClassSecurityInfo
 from Globals import DTMLFile
@@ -172,18 +171,18 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
             localidade = self.zsql.localidade_obter_zsql(cod_localidade = self.sapl_documentos.props_sapl.cod_localidade)[0].nom_localidade
             sigla_uf = self.zsql.localidade_obter_zsql(cod_localidade = self.sapl_documentos.props_sapl.cod_localidade)[0].sgl_uf
             if consulta.voc_lexml == 'lei.organica':
-                epigrafe = '%s de %s - %s, de %s' % (consulta.des_tipo_norma, localidade,sigla_uf, consulta.ano_norma)
+                epigrafe = u'%s de %s - %s, de %s' % (consulta.des_tipo_norma, localidade,sigla_uf, consulta.ano_norma)
             elif consulta.voc_lexml == 'constituicao':
-                epigrafe = '%s do Estado de %s, de %s' % (consulta.des_tipo_norma, localidade, consulta.ano_norma)
+                epigrafe = u'%s do Estado de %s, de %s' % (consulta.des_tipo_norma, localidade, consulta.ano_norma)
             else:
-                epigrafe = '%s n. %s,  de %s' % (consulta.des_tipo_norma, consulta.num_norma, self.pysc.data_converter_por_extenso_pysc(consulta.dat_norma))
+                epigrafe = u'%s n. %s,  de %s' % (consulta.des_tipo_norma, consulta.num_norma, self.pysc.data_converter_por_extenso_pysc(consulta.dat_norma))
            
             ementa = consulta.txt_ementa
            
             indexacao = consulta.txt_indexacao
            
             formato = 'text/html'
-            id_documento = '%s_%s' % (str(cod_norma), self.sapl_documentos.norma_juridica.nom_documento)
+            id_documento = u'%s_%s' % (str(cod_norma), self.sapl_documentos.norma_juridica.nom_documento)
             if hasattr(self.sapl_documentos.norma_juridica,id_documento):
                 arquivo = getattr(self.sapl_documentos.norma_juridica,id_documento)
                 url_conteudo = arquivo.absolute_url()
