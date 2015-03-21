@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from warnings import warn
 from datetime import datetime
 from AccessControl import ClassSecurityInfo
