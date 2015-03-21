@@ -25,7 +25,7 @@ class ISAPLTool(Interface):
 
 class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
     __implements__ = (ISAPLTool)
-    id = 'portal_sapl'
+    id = 'sapl'
     meta_type = 'SAPL Tool'
     XSI_NS = 'http://www.w3.org/2001/XMLSchema-instance'
     ns = {'lexml': 'http://www.lexml.gov.br/oai_lexml'}
