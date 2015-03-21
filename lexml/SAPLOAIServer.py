@@ -124,9 +124,9 @@ class SAPLOAIServer(SimpleItem.SimpleItem,Persistent):
     def handle_request(self, req,RESPONSE=None):
         if not req.URL.startswith(self._base_url):
             return req.RESPONSE.setStatus('500 Internal Server Error',
-                 'The url "%s" does not start with base url "%s".' % (req.URL,
+                 u'The url "%s" does not start with base url "%s".' % (req.URL,
                                                                       self._base_url))
-        sapl_tool = getToolByName(self,'portal_sapl')
+        sapl_tool = getToolByName(self,'sapl')
         oai_server = OAIServerFactory(sapl_tool, self.config())
         return self.write(req, oai_server.handleRequest(req.form),'text/xml',RESPONSE)
 
