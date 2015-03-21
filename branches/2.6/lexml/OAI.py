@@ -119,7 +119,7 @@ class OAIServer(object):
             # until nunca deve ser no futuro
             until = now
             
-        return self.sapl.oai_query(offset=cursor,
+        return self.sapl_tool.oai_query(offset=cursor,
                                         batch_size=batch_size,
                                         from_date=from_,
                                         until_date=until,
