@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from warnings import warn
 from datetime import datetime
 from AccessControl import ClassSecurityInfo
@@ -18,10 +20,12 @@ from lxml import etree
 import re
 from zope.interface import Interface
 from Products.CMFCore.utils import getToolByName
+
 class ISAPLTool(Interface):
     """ Marker interface for SAPL Tool.
     """
     pass
+
 class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
     __implements__ = (ISAPLTool)
     id = 'portal_sapl'
@@ -29,6 +33,7 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
     XSI_NS = 'http://www.w3.org/2001/XMLSchema-instance'
     ns = {'lexml': 'http://www.lexml.gov.br/oai_lexml'}
     schema = {'oai_lexml': 'http://projeto.lexml.gov.br/esquemas/oai_lexml.xsd'}
+
     def verifica_esfera_federacao(self):
         ''' Funcao para verificar a esfera da federacao
         '''
@@ -41,6 +46,7 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
             return 'E'
         else:
             return ''
+
     def monta_id(self,cod_norma):
         ''' Funcao que monta o id do objeto do LexML
         '''
@@ -96,6 +102,11 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
             uf = self.zsql.localidade_obter_zsql(sgl_uf=sigla_uf,tip_localidade='U')[0].nom_localidade_pesq.lower()
             for i in re.findall('\s',uf):
                 uf = uf.replace(i, '.')
+
+            sigla_uf=localidade[0].sgl_uf
+            uf = self.zsql.localidade_obter_zsql(sgl_uf=sigla_uf,tip_localidade='U')[0].nom_localidade_pesq.lower()
+            for i in re.findall('\s',uf):
+                uf = uf.replace(i, '.')
            
             # solucao temporaria
             if re.search( '\.de\.', uf):
@@ -108,6 +119,7 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
                 uf = [uf.replace(i, '.') for i in re.findall( '\.do\.', uf)][0]
             if re.search( '\.dos\.', uf):
                 uf = [uf.replace(i, '.') for i in re.findall( '\.dos\.', uf)][0]
+
             if self.verifica_esfera_federacao() == 'M':
                 urn += uf + ';'
                 urn += municipio + ':'
@@ -123,9 +135,7 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
                 urn += consulta.ano_norma
             else:
                 urn += consulta.num_norma
-           
-           
-               
+                       
             if consulta.dat_vigencia and consulta.dat_publicacao:
                 urn += '@'
                 urn += self.pysc.port_to_iso_pysc(consulta.dat_vigencia)
@@ -133,13 +143,7 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
                 urn += self.pysc.port_to_iso_pysc(consulta.dat_publicacao)
             elif consulta.dat_publicacao:
                 urn += '@'
-                urn += 'inicio.vigencia;publicacao;' + self.pysc.port_to_iso_pysc(consulta.dat_publicacao)
-#            else:
-#                urn += 'inicio.vigencia;publicacao;'
-#               
-#            if consulta.dat_publicacao:
-#                urn += self.pysc.port_to_iso_pysc(consulta.dat_publicacao)
-               
+                urn += 'inicio.vigencia;publicacao;' + self.pysc.port_to_iso_pysc(consulta.dat_publicacao)              
             return urn
         else:
             return None
@@ -165,6 +169,7 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
                         'http://projeto.lexml.gov.br/esquemas/oai_lexml.xsd')
            
             id_publicador = str(publicador.id_publicador)
+
             # montagem da epigrafe
             localidade = self.zsql.localidade_obter_zsql(cod_localidade = self.sapl_documentos.props_sapl.cod_localidade)[0].nom_localidade
             sigla_uf = self.zsql.localidade_obter_zsql(cod_localidade = self.sapl_documentos.props_sapl.cod_localidade)[0].sgl_uf
@@ -173,7 +178,7 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
             elif consulta.voc_lexml == 'constituicao':
                 epigrafe = '%s do Estado de %s, de %s' % (consulta.des_tipo_norma, localidade, consulta.ano_norma)
             else:
-                epigrafe = '%s nº %s,  de %s' % (consulta.des_tipo_norma, consulta.num_norma, self.pysc.data_converter_por_extenso_pysc(consulta.dat_norma))
+                epigrafe = '%s n. %s,  de %s' % (consulta.des_tipo_norma, consulta.num_norma, self.pysc.data_converter_por_extenso_pysc(consulta.dat_norma))
            
             ementa = consulta.txt_ementa
            
@@ -201,13 +206,14 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
            
             documento_individual = E.DocumentoIndividual(urn)
             oai_lexml.append(documento_individual)
-            oai_lexml.append(E.Epigrafe(epigrafe.decode('iso-8859-1')))
-            oai_lexml.append(E.Ementa(ementa.decode('iso-8859-1')))
+            oai_lexml.append(E.Epigrafe(epigrafe))
+            oai_lexml.append(E.Ementa(ementa))
             if indexacao:
-                oai_lexml.append(E.Indexacao(indexacao.decode('iso-8859-1')))
+                oai_lexml.append(E.Indexacao(indexacao))
             return etree.tostring(oai_lexml)
         else:
             return None
+
     def oai_query(self,
                   offset=0,
                   batch_size=20,
@@ -217,6 +223,7 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
         esfera = self.verifica_esfera_federacao()
         if batch_size < 0:
             batch_size = 0
+
         # garante que a data 'until'(ate) esteja setada, e nao no futuro
         if until_date == None or until_date > datetime.now():
             until_date = datetime.now()
@@ -236,21 +243,13 @@ class SAPLTool(UniqueObject, SimpleItem, ActionProviderBase):
             xml_lexml = self.monta_xml(urn,cod_norma)
            
             resultado['tx_metadado_xml'] = xml_lexml
-            #resultado['id_registro_item'] = resultado['name']
-            #del resultado['name']
-            #record['sets'] = record['sets'].strip().split(' ')
-            #if resultado['sets'] == [u'']:
-            #    resultado['sets'] = []
             resultado['cd_status'] = 'N'
             resultado['id'] = identificador
             resultado['when_modified'] = norma.timestamp
             resultado['deleted'] = 0
             if norma.ind_excluido == 1:
                 resultado['deleted'] = 1
-#                resultado['cd_status'] = 'D'
             yield {'record': resultado,
-#                   'sets': ['person'],
                    'metadata': resultado['tx_metadado_xml'],
-#                   'assets':{}
                    }
 InitializeClass(SAPLTool)
