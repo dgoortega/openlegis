@@ -1,5 +1,3 @@
-
-from lxml.builder import ElementMaker
 from lxml import etree
 
 XSI_NS = 'http://www.w3.org/2001/XMLSchema-instance'
