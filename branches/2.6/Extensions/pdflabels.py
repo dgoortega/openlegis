@@ -5,7 +5,7 @@
 """Gera etiquetas de mala-direta em PDF 
 
    o O texto será redimensionado(*) para preencher a etiqueta
-     (*)Rdimensionar significa reduzir o tamanho da fonte
+     (*)Redimensionar significa reduzir o tamanho da fonte
   
    o Para adicionar um novo modelo de etiqueta, insira um dicionário com as dimensões na tupla LABELS
 
@@ -346,7 +346,7 @@ def factory(cia, model):
     raise Error, "Modelo de etiqueta não encontrado"
 
 def gera_etiqueta(self, dados):
-    labels = factory("Pimaco", "6180")
+    labels = factory("Pimaco", "6083")
     filename=str(int(time.time()*100))+".pdf"
     labels.setGrid()
     labels.generate(dados, filename)

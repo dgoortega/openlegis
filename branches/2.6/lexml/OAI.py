@@ -7,6 +7,8 @@ import oaipmh.error
 
 from metadata import OAILEXML
 
+from Products.CMFCore.utils import getToolByName
+
 def get_writer(prefix, config={}):
     writer = OAILEXML
     return writer(prefix, config={})
