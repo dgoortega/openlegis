@@ -206,6 +206,9 @@ $(function() {
                <dtml-if expr="_.has_key('tip_emenda') and tip_emenda=='Aditiva'">selected</dtml-if>
                value="Aditiva">Aditiva</option>
               <option
+               <dtml-if expr="_.has_key('tip_emenda') and tip_emenda=='Redacao'">selected</dtml-if>
+               value="Redacao">De Redação</option>
+              <option
                <dtml-if expr="_.has_key('tip_emenda') and tip_emenda=='Modificativa'">selected</dtml-if> 
                value="Modificativa">Modificativa</option>
               <option 
@@ -214,6 +217,9 @@ $(function() {
               <option 
                <dtml-if expr="_.has_key('tip_emenda') and tip_emenda=='Supressiva'">selected</dtml-if>
                value="Supressiva">Supressiva</option>
+              <option 
+               <dtml-if expr="_.has_key('tip_emenda') and tip_emenda=='Subemenda'">selected</dtml-if>
+               value="Subemenda">Subemenda</option>
               <option 
                <dtml-if expr="_.has_key('tip_emenda') and tip_emenda=='Mens. Aditiva'">selected</dtml-if>
                value="Mens. Aditiva">Mensagem Aditiva</option>

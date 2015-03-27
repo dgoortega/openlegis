@@ -423,7 +423,7 @@ $(document).ready(function() {
                     <dtml-if dat_devolucao>
 		    <tr>
                         <td colspan=2 class="form-element">Justificativa da Devolução <span class="campoObrigatorio">&nbsp;</span>
-                         <textarea name="txa_txt_justificativa" cols="70" rows="4" onBlur="form.txa_txt_justificativa.value = form.txa_txt_justificativa.value.toUpperCase()" onChange="javascript:form.hdn_alterou.value=1"<dtml-if txt_justif_devolucao>readonly</dtml-if>><dtml-if txt_justif_devolucao><dtml-var txt_justif_devolucao missing></dtml-if></textarea>
+                         <textarea name="txa_txt_justificativa" cols="70" rows="4" onChange="javascript:form.hdn_alterou.value=1"<dtml-if txt_justif_devolucao>readonly</dtml-if>><dtml-if txt_justif_devolucao><dtml-var txt_justif_devolucao missing></dtml-if></textarea>
                         </td>
                         <td colspan=1 class="form-element">
                           <b>Data de devolução</b><br />
@@ -438,7 +438,7 @@ $(document).ready(function() {
                   <dtml-unless cod_mat_ou_doc>
                     <tr>
                         <td colspan=3 class="form-element">Justificativa da Devolução <span class="campoObrigatorio">&nbsp;</span>
-                           <textarea name="txa_txt_justificativa"cols="65" rows="4" onBlur="form.txa_txt_justificativa.value = form.txa_txt_justificativa.value.toUpperCase()" onChange="javascript:form.hdn_alterou.value=1" <dtml-if txt_justif_devolucao>readonly</dtml-if>><dtml-if txt_justif_devolucao><dtml-var txt_justif_devolucao missing></dtml-if></textarea>
+                           <textarea name="txa_txt_justificativa"cols="65" rows="4" onChange="javascript:form.hdn_alterou.value=1" <dtml-if txt_justif_devolucao>readonly</dtml-if>><dtml-if txt_justif_devolucao><dtml-var txt_justif_devolucao missing></dtml-if></textarea>
                          </td>
                     </tr>
                   </dtml-unless cod_mat_ou_doc>			

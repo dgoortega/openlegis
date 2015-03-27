@@ -209,7 +209,8 @@ function reloadParentAndClose()
                                         (2,'Maioria absoluta'),
                                         (3,'Maioria qualificada (1/3)'),
                                         (4,'Maioria qualificada (2/3)'),
-                                        (5,'Maioria qualificada (3/5)')]">
+                                        (5,'Maioria qualificada (3/5)'),
+                                        (6,'Matéria + 1/7')]">
                           <option <dtml-if expr="_.has_key('tip_quorum') and tip_quorum==_['sequence-key']"> selected</dtml-if> value="<dtml-var expr="_['sequence-key']">"><dtml-var expr="_['sequence-item']"></option>
                         </dtml-in>
                       </select>
