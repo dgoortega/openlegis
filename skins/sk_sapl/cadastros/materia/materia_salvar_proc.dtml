@@ -27,6 +27,10 @@
   <dtml-call expr="REQUEST.set('metodo', zsql.materia_incluir_zsql)">
 </dtml-if>
 
+<dtml-unless txa_txt_indexacao>
+    <dtml-call expr="REQUEST.set('txa_txt_indexacao', hdn_num_ident_basica)">
+</dtml-unless>
+
 <dtml-unless erro>
   <dtml-unless rad_tip_apresentacao>
     <dtml-call expr="REQUEST.set('rad_tip_apresentacao', '')">

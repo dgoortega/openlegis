@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from datetime import datetime
 from DateTime import DateTime
 from OFS import SimpleItem, Folder

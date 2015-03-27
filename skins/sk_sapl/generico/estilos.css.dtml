@@ -1344,6 +1344,10 @@ ul.mytabs li.current a {
     display: none !important;
   }
 
+texto, .texto {
+line-height: 1em !important;
+padding-top: 5px !important;
+}
 #logo img {
     max-width: 90px !important;
     padding: 0 0.5em 1em 0.5em !important;
