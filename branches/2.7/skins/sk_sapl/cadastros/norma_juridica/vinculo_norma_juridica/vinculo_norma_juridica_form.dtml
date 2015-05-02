@@ -72,11 +72,12 @@ function vinculo_norma_juridica_excluir() {
                 <option value =""></option>
                 <dtml-in expr="[('A','Altera a norma'),
                                 ('R','Revoga a norma'),
+                                ('C','Norma correlata'),
+                                ('G','Regulamenta a norma'),
                                 ('P','Revoga parcialmente a norma'),
                                 ('T','Revoga por consolidação a norma'),
-                                ('C','Norma correlata'),
                                 ('I','Suspende a execução da norma'),
-                                ('G','Regulamenta a norma')]">
+                                ('S','Torna sem eficácia')]">
                   <option
                     <dtml-if expr="_.has_key('tip_vinculo') and tip_vinculo==_['sequence-key']"> selected
                    </dtml-if>

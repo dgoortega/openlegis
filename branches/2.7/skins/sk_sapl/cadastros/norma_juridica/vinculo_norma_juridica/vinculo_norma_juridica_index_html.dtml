@@ -33,6 +33,7 @@
             <dtml-elif "tip_vinculo=='C'">Norma correlata
             <dtml-elif "tip_vinculo=='I'">Execução suspensa pelo(a)
             <dtml-elif "tip_vinculo=='G'">Regulamentada pelo(a)
+            <dtml-elif "tip_vinculo=='S'">Tornada ineficaz pelo(a)
             </dtml-if></b></a>
          </td>
          <td class="texto">
@@ -55,6 +56,7 @@
             <dtml-elif "tip_vinculo=='C'">Norma correlata
             <dtml-elif "tip_vinculo=='I'">Suspende a execução do(a)
             <dtml-elif "tip_vinculo=='G'">Regulamenta o(a)
+            <dtml-elif "tip_vinculo=='S'">Torna ineficaz o(a)
             </dtml-if> </b></a>
          </td>
          <td class="texto">
