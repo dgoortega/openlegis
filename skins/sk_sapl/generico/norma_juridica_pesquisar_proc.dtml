@@ -36,7 +36,7 @@
 
  <dtml-if sequence-start>
     <dtml-if next-sequence>
-       <dtml-call "REQUEST.set('existe_seq_posterior', 1)">
+       <dtml-call "REQUEST.set('existe_seq_posterior', 1)">LTER TABLE  `documento_administrativo` CHANGE  `txt_interessado`  `txt_interessado` VARCHAR( 100 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL ;
     </dtml-if>
      <table>
       <tr>
@@ -84,6 +84,8 @@
             <dtml-if "tip_vinculo=='A'"><img align="absmiddle" border="0" src="&dtml-portal_url;/imagens/icon_status_altera.gif">&nbsp;<span style="color:#32682F;font-weight:normal;">Alterada pelo(a) <a href="&dtml-portal_url;/consultas/norma_juridica/norma_juridica_mostrar_proc?cod_norma=<dtml-var cod_norma_referente>"><dtml-var sgl_tipo_norma>&nbsp;<dtml-var num_norma>/<dtml-var ano_norma></a>.&nbsp;</span><br />
 
             <dtml-elif "tip_vinculo=='R'"><img align="absmiddle" border="0" src="&dtml-portal_url;/imagens/icon_status_revoga_integral.gif">&nbsp;<span style="color:#C72100;font-weight:normal;">Revogada pelo(a) <a href="&dtml-portal_url;/consultas/norma_juridica/norma_juridica_mostrar_proc?cod_norma=<dtml-var cod_norma_referente>"><dtml-var sgl_tipo_norma>&nbsp;<dtml-var num_norma>/<dtml-var ano_norma></a>.&nbsp;</span><br />
+
+            <dtml-elif "tip_vinculo=='S'"><img align="absmiddle" border="0" src="&dtml-portal_url;/imagens/icon_status_revoga_integral.gif">&nbsp;<span style="color:#C72100;font-weight:normal;">Declarada ineficaz pelo(a) <a href="&dtml-portal_url;/consultas/norma_juridica/norma_juridica_mostrar_proc?cod_norma=<dtml-var cod_norma_referente>"><dtml-var sgl_tipo_norma>&nbsp;<dtml-var num_norma>/<dtml-var ano_norma></a>.&nbsp;</span><br />
 
             <dtml-elif "tip_vinculo=='P'"><img align="absmiddle" border="0" src="&dtml-portal_url;/imagens/icon_status_revoga_parcial.gif">&nbsp;<span style="color:#32682F;font-weight:normal;">Revogada parcialmente pelo(a) <a href="&dtml-portal_url;/consultas/norma_juridica/norma_juridica_mostrar_proc?cod_norma=<dtml-var cod_norma_referente>"><dtml-var sgl_tipo_norma>&nbsp;<dtml-var num_norma>/<dtml-var ano_norma></a>.&nbsp;</span><br />
 
