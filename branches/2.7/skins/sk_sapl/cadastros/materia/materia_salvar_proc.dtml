@@ -84,7 +84,7 @@
             <dtml-try>
                 <dtml-call expr="zsql.autoria_incluir_zsql(cod_autor          = _.int(hdn_cod_autor),
                                                            cod_materia        = codigo,
-                                                           ind_primeiro_autor = 1)">
+                                                           ind_primeiro_autor = 0)">
                 <dtml-call expr="REQUEST.set('erro_autor', 0)">
             <dtml-except>
                 <dtml-call expr="REQUEST.set('erro_autor', 1)">
@@ -95,7 +95,7 @@
             <dtml-try>
                 <dtml-call expr="zsql.autoria_incluir_zsql(cod_autor          = _.int(lst_cod_autor),
                                                            cod_materia        = codigo,
-                                                           ind_primeiro_autor = 1)">
+                                                           ind_primeiro_autor = 0)">
                 <dtml-call expr="REQUEST.set('erro_autor', 0)">
             <dtml-except>
                 <dtml-call expr="REQUEST.set('erro_autor', 1)">
@@ -107,7 +107,7 @@
        	    <dtml-try>
 		<dtml-call expr="zsql.autoria_incluir_zsql(cod_autor          = cod_autor,
                           				   cod_materia        = codigo,
-                          		                   ind_primeiro_autor = 1)">
+                          		                   ind_primeiro_autor = 0)">
 		<dtml-call expr="REQUEST.set('erro_autor', 0)">
 	    <dtml-except>
 		<dtml-call expr="REQUEST.set('erro_autor', 1)">
@@ -131,7 +131,7 @@
             <dtml-try>
                 <dtml-call expr="zsql.autoria_incluir_zsql(cod_autor          = protAutor,
                                                            cod_materia        = codigo,
-                                                           ind_primeiro_autor = 1)">
+                                                           ind_primeiro_autor = 0)">
                 <dtml-call expr="REQUEST.set('erro_autor', 0)">
             <dtml-except>
                 <dtml-call expr="REQUEST.set('erro_autor', 1)">
