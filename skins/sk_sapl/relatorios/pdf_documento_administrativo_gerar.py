@@ -3,7 +3,7 @@
 """relatorio_documento.py
    External method para gerar o arquivo rml do resultado de uma pesquisa de documentos administrativos
    Autor: Luciano De Fazio
-   Empresa: OpenLegis Consultoria
+   Empresa: OpenLegis
    versão: 1.0
 """
 from trml2pdf import parseString
@@ -72,12 +72,14 @@ def documentos(lst_documentos):
         #condicao para a quebra de pagina
         tmp_data+='\t\t<condPageBreak height="1.5cm"/>\n'
 
-        #materias	
+        #documentos	
         if dic['titulo']!=None:
             tmp_data+='\t\t<para style="P1">' + dic['titulo'] + '</para>\n'
         if dic['txt_assunto']!=None:
             txt_assunto = dic['txt_assunto'].replace('&','&amp;')
             tmp_data+='\t\t<para style="P2">' + txt_assunto + '</para>\n'
+        if dic['protocolo']!=" " and dic['protocolo']!=None:
+            tmp_data+='\t\t<para style="P2">' + dic['protocolo'] + '</para>\n'
         if dic['txt_interessado']!=None:
             tmp_data+='\t\t<para style="P2"><b>Interessado:</b> ' + dic['txt_interessado'] + '</para>\n'
         if dic['des_situacao']!="":
@@ -97,7 +99,7 @@ def principal(sessao,imagem,data,lst_documentos,dic_cabecalho,lst_rodape,dic_fil
     tmp_data+='<?xml version="1.0" encoding="utf-8" standalone="no" ?>\n'
     tmp_data+='<!DOCTYPE document SYSTEM "rml_1_0.dtd">\n'
     tmp_data+='<document filename="relatorio.pdf">\n'
-    tmp_data+='\t<template pageSize="(21cm, 29.7cm)" title="Relatório de Documentos Administrativos" author="OpenLegis" allowSplitting="20">\n'
+    tmp_data+='\t<template pageSize="(21cm, 29.7cm)" title="Documentos Administrativos" author="OpenLegis" allowSplitting="20">\n'
     tmp_data+='\t\t<pageTemplate id="first">\n'
     tmp_data+='\t\t\t<pageGraphics>\n'
     tmp_data+=cabecalho(dic_cabecalho,imagem)
