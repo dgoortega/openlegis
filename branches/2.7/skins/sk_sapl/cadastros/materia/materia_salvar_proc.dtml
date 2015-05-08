@@ -5,7 +5,7 @@
                                        num_ident_basica = hdn_num_ident_basica,
                                        ano_ident_basica = txt_ano_ident_basica)">
   <dtml-call expr="REQUEST.set('erro', 1)">
-  <dtml-let mensagem="'Matéria identificada por tipo, número e ano já existe no cadastro. Não foi possível salvá-la.'">
+  <dtml-let mensagem="'Matéria identificada por Tipo, Número e Ano já existe no cadastro. Não foi possível salvá-la.'">
     <dtml-var mensagem_emitir>
   </dtml-let>
 </dtml-in>
@@ -48,7 +48,7 @@
         ano_ident_basica         = txt_ano_ident_basica,
         num_protocolo            = txt_num_protocolo,
         dat_apresentacao         = pysc.data_converter_pysc(data=txt_dat_apresentacao),
-        tip_apresentacao         = rad_tip_apresentacao[0],
+        tip_apresentacao         = rad_tip_apresentacao,
         dat_publicacao           = pysc.data_converter_pysc(data=txt_dat_publicacao),
         tip_origem_externa       = lst_tip_origem_externa,
         num_origem_externa       = txt_num_origem_externa,
@@ -65,8 +65,7 @@
         cod_regime_tramitacao    = lst_cod_regime_tramitacao,
         txt_ementa               = txa_txt_ementa,
         txt_indexacao            = txa_txt_indexacao,
-        txt_observacao           = txa_txt_observacao,
-        tip_quorum               = lst_tip_quorum)">
+        txt_observacao           = txa_txt_observacao)">
   <dtml-except>
     <dtml-let mensagem="'Houve um erro no banco de dados.'">
       <dtml-var mensagem_emitir>
@@ -91,14 +90,12 @@
             </dtml-try>
         </dtml-if>
 
-        <dtml-if lst_cod_autor>
+        <dtml-if chk_cod_autor>
             <dtml-try>
-                <dtml-call expr="zsql.autoria_incluir_zsql(cod_autor          = _.int(lst_cod_autor),
-                                                           cod_materia        = codigo,
-                                                           ind_primeiro_autor = 0)">
-                <dtml-call expr="REQUEST.set('erro_autor', 0)">
+               <dtml-call expr="pysc.autoria_materia_salvar_pysc(autores=chk_cod_autor,materia=hdn_cod_materia)">
+               <dtml-call expr="REQUEST.set('erro_autor', 0)">
             <dtml-except>
-                <dtml-call expr="REQUEST.set('erro_autor', 1)">
+               <dtml-call expr="REQUEST.set('erro_autor', 1)">
             </dtml-try>
         </dtml-if>
 
@@ -120,7 +117,7 @@
               <dtml-if ok>
               <dtml-else>
                 <dtml-call expr="REQUEST.set('erro', 1)">
-                <dtml-let mensagem="'Ocorreu erro ao salvar o texto integral'+hdn_cod_materia">
+                <dtml-let mensagem="'Ocorreu erro ao salvar texto integral'+hdn_cod_materia">
                   <dtml-var mensagem_emitir>
                 </dtml-let>
               </dtml-if>
@@ -163,7 +160,7 @@
       <dtml-if expr="not existe_arquivo">
         <dtml-call expr="REQUEST.set('erro',0)">
         <dtml-try>
-            <dtml-call expr="sapl_documentos.materia.manage_addProduct['ExtFile'].manage_addExtFile(id=id_documento,file=file_nom_arquivo,permission_check=0)">
+            <dtml-call expr="sapl_documentos.materia.manage_addFile(id=id_documento,file=file_nom_arquivo)">
         <dtml-except> 
         </dtml-try>
       </dtml-if>
